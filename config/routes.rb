@@ -7,6 +7,7 @@ Chatroom2::Application.routes.draw do
 	resources :posts
   end
 
+  match '/signup',  to: 'users#new'
 
   get "home/index"
 

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :passwordhash
+  attr_accessible :name, :password_digest
   has_many :owned_rooms, :class_name => "Room", :foreign_key => "owner_id"
   has_and_belongs_to_many :rooms, :class_name => "Room", :foreign_key => "member_id", :association_foreign_key => "room_id"
-  has_many :posts, :as => :postable
+  has_many :posts
+
+  validates :name, presence: true, length: { maximum: 12 }, uniqueness: { case_sensitive: false }
+  validates :passwordhash, presence: true, length: { maximum: 12 }
 end

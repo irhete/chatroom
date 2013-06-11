@@ -3,7 +3,9 @@ Chatroom2::Application.routes.draw do
 	resources :rooms
   end
 
-  resources :rooms
+  resources :rooms do
+	resources :posts
+  end
 
 
   get "home/index"
