@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Passwordhash:</b>
+  <%= @user.passwordhash %>
+</p>
+
+<%= form_for([@user, @user.owned_rooms.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<h2>Owned Rooms</h2>
+<% @user.owned_rooms.each do |room| %>
+  <p>
+    <b>Name:</b>
+    <%= room.name %>
+    <%= link_to 'Show', room %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

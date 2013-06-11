@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @room.name %>
+</p>
+<% @room.posts.each do |post| %>
+  <p>
+    <b><%= post.room.owner.name %></b>
+    <%= post.body %>
+    <td><%= link_to 'Destroy', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </p>
+<% end %>
+
+<%= form_for([@room, @room.posts.build]) do |f| %>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', @room.owner %>
