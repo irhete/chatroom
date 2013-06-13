@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:edit, :update, :owned_rooms, :member_rooms]
+  before_filter :correct_user,   only: [:edit, :update, :owned_rooms, :member_rooms]
+
   # GET /users
   # GET /users.json
   def index
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+
   end
 
   # POST /users
@@ -80,4 +83,25 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def owned_rooms
+    @rooms = @user.owned_rooms
+  end
+
+
+  def member_rooms
+    @rooms = @user.rooms
+  end
+
+
+  private
+
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+  
+  def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 end

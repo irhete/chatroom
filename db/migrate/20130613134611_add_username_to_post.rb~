@@ -1,0 +1,4 @@
+class AddUsernameToPost < ActiveRecord::Migration
+  def change
+  end
+end

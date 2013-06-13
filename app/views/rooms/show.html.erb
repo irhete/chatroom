@@ -6,8 +6,9 @@
 </p>
 <% @room.posts.each do |post| %>
   <p>
-    <b><%= post.room.owner.name %></b>
+    <b><%= post.username %></b>
     <%= post.body %>
+    <%= post.created_at %>
     <td><%= link_to 'Destroy', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </p>
 <% end %>

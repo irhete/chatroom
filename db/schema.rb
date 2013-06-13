@@ -11,18 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611182027) do
+ActiveRecord::Schema.define(:version => 20130613134611) do
 
   create_table "posts", :force => true do |t|
-    t.integer  "user_id"
     t.text     "body"
     t.integer  "room_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "username"
   end
 
   add_index "posts", ["room_id"], :name => "index_posts_on_room_id"
-  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "rooms", :force => true do |t|
     t.string   "name"

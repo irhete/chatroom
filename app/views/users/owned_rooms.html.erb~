@@ -1,0 +1,3 @@
+<h1>Listing rooms</h1>
+
+<%= render 'rooms_form' %>

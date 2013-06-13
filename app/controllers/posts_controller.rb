@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def create
     @room = Room.find(params[:room_id])
     param_hash = params[:post]
-    param_hash[:user] = @room.owner
+    param_hash[:username] = current_user.name
     @post = @room.posts.create(param_hash)
     redirect_to room_path(@room)
   end

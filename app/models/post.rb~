@@ -1,4 +1,4 @@
 class Post < ActiveRecord::Base
-  belongs_to :postable, :polymorphic => true
-  attr_accessible :body
+  belongs_to :room
+  attr_accessible :body, :username
 end
