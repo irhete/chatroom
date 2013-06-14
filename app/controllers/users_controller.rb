@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :owned_rooms, :member_rooms]
-  before_filter :correct_user,   only: [:edit, :update, :owned_rooms, :member_rooms]
+  before_filter :signed_in_user, except: [:create, :new]
+  before_filter :correct_user,  except: [:create, :new]
 
   # GET /users
   # GET /users.json

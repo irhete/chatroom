@@ -2,18 +2,24 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td><b>Name</b></td>
+    <td></td>
   </tr>
 
 <% @rooms.each do |room| %>
   <tr>
     <td><%= room.name %></td>
-    <td><%= link_to 'Show', room %></td>
-    <td><%= link_to 'Edit', edit_room_path(room) %></td>
-    <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   <% if room.members.include?(@user) %>
+      <td><%= link_to 'Show', room %></td>
+    <% else %>
+      <td><%= link_to 'Join', join_room_room_path(room) %> </td>  
+    <% end %>
+    
   </tr>
 <% end %>
 </table>
+
+</br>
+
+<%= link_to 'Back', user_path(@user) %>
+<%= link_to 'Sign out', signout_path, :method=>:delete %>

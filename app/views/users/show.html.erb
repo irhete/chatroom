@@ -7,7 +7,7 @@
 
 <%= form_for([@user, @user.owned_rooms.build]) do |f| %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label 'Enter room name:' %><br />
     <%= f.text_field :name %>
   </div>
   <div class="actions">
@@ -15,17 +15,13 @@
   </div>
 <% end %>
 
-<h2>Owned Rooms</h2>
-<% @user.owned_rooms.each do |room| %>
-  <p>
-    <b>Name:</b>
-    <%= room.name %>
-    <%= link_to 'Show', room %>
-  </p>
-<% end %>
+</br>
 
+<%= link_to 'All rooms', rooms_path %> 
+</br>
 <%= link_to 'Owned rooms', owned_rooms_user_path(@user) %> 
-<%= link_to 'Rooms', member_rooms_user_path(@user) %> 
-<%= link_to 'Edit', edit_user_path(@user) %> 
-<%= link_to 'Back', users_path %>
+</br>
+<%= link_to 'My rooms', member_rooms_user_path(@user) %> 
+</br>
+</br>
 <%= link_to 'Sign out', signout_path, :method=>:delete %>

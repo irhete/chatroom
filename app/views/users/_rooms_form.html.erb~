@@ -1,0 +1,16 @@
+<table>
+<% @rooms.each do |room| %>
+  <tr>
+    <td><%= room.name %></td>
+    <td><%= link_to 'Show', room %></td>
+    <% if room.owner == @user %>
+      <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td><%= link_to 'Leave', kick_room_path(room, :user_id => @user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', user_path(@room.owner) %>
+<%= link_to 'Sign out', signout_path, :method=>:delete %>

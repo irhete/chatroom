@@ -1,21 +1,49 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Room name:</b>
   <%= @room.name %>
 </p>
-<% @room.posts.each do |post| %>
-  <p>
-    <b><%= post.username %></b>
-    <%= post.body %>
-    <%= post.created_at %>
-    <td><%= link_to 'Destroy', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </p>
+
+<p>
+  <b>Owner:</b>
+  <%= @room.owner.name %>
+</p>
+
+<b>Members:</b>
+</br>
+<% @room.members.each do |member| %>
+    <%= member.name %>
+    <% if @user == @room.owner && member != @room.owner %>
+      <td><%= link_to 'Kick', kick_room_path(@room, :user_id => member.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td></td>    
+    <% end %>
+  </br>
 <% end %>
+
+</br>
+
+<table>
+<% @room.posts.each do |post| %>
+  <tr>
+    <td><b><%= post.username %></b></td>
+    <td><%= post.body %></td>
+    <td><%= post.created_at %></td>
+    <% if @user.name == post.username %>
+      <td><%= link_to 'Destroy', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td></td>    
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+</br>
 
 <%= form_for([@room, @room.posts.build]) do |f| %>
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label 'Enter post:' %><br />
     <%= f.text_field :body %>
   </div>
   <div class="actions">
@@ -23,5 +51,5 @@
   </div>
 <% end %>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', @room.owner %>
+<%= link_to 'Back', user_path(@user) %>
+<%= link_to 'Sign out', signout_path, :method=>:delete %>

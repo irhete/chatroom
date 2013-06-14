@@ -4,9 +4,22 @@
   <tr>
     <th>Name</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
-render 'form'
+<% @rooms.each do |room| %>
+  <tr>
+    <td><%= room.name %></td>
+   <% if room.members.include?(@user) %>
+      <td><%= link_to 'Show', room %></td>
+    <% else %>
+      <td><%= link_to 'Join', join_room_room_path(room) %> </td>  
+    <% end %>
+    
+  </tr>
+<% end %>
 </table>
+
+</br>
+
+<%= link_to 'Back', user_path(@user) %>
+<%= link_to 'Sign out', signout_path, :method=>:delete %>

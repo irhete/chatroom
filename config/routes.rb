@@ -8,7 +8,12 @@ Chatroom2::Application.routes.draw do
   end
 
   resources :rooms do
-	resources :posts
+    resources :posts
+    member do
+      get 'join_room'
+      delete 'kick'
+    end
+
   end
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -16,6 +21,8 @@ Chatroom2::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
+
+  
 
   get "home/index"
 

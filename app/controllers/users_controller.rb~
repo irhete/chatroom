@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :owned_rooms, :member_rooms]
-  before_filter :correct_user,   only: [:edit, :update, :owned_rooms, :member_rooms]
+  before_filter :signed_in_user, except: [:create]
+  before_filter :correct_user,  except: [:create]
 
   # GET /users
   # GET /users.json
@@ -86,13 +86,11 @@ class UsersController < ApplicationController
 
   def owned_rooms
     @rooms = @user.owned_rooms
-    redirect_to @rooms
   end
 
 
   def member_rooms
     @rooms = @user.rooms
-    redirect_to @rooms
   end
 
 
