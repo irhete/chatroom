@@ -6,7 +6,9 @@
       <p class="error"><%= flash[:error] %></p>
     <% end %>
 
+<p class = username> <%= @user.name %>
 <%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
+</p>
   <h2><%= @room.name %></h2> 
   <% if @user != @room.owner %>
       <%= link_to 'unjoin', kick_room_path(@room, :user_id => @user.id), method: :delete, data: { confirm: 'Are you sure you want to unjoin from the room?' } %>   

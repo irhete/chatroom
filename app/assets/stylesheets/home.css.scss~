@@ -8,7 +8,6 @@
 
 .signout-link {
   float: right;
-  font-size: 11pt;
 }
 
 #header {
@@ -37,4 +36,8 @@ h1 {
 .notice {
   text-align: center;
   color: green;
+}
+
+.username {
+  float:right;
 }

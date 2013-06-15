@@ -1,3 +1,11 @@
+<div class = rooms>
+<%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
+
 <h1>Owned rooms</h1>
 
+
+
 <%= render 'rooms_form' %>
+
+<%= link_to 'Back', user_path(@user), class: "back-link" %>
+</div>

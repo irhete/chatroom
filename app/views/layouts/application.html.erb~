@@ -13,16 +13,11 @@
 </div>        
        
 <div id="content"> 
-<% if flash[:notice] %>
-      <p class="notice"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:error] %>
-      <p class="error"><%= flash[:error] %></p>
-    <% end %>
 <%= yield %> 
 </div>
 
 <div id="footer">
+<hr>
  Irene Teinemaa 2013. All rights reserved.
 </div> 
 

@@ -1,5 +1,7 @@
 <div class = rooms>
+<p class = username> <%= @user.name %>
 <%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
+</p>
 
 <h1>Owned rooms</h1>
 

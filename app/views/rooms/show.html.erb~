@@ -6,7 +6,9 @@
       <p class="error"><%= flash[:error] %></p>
     <% end %>
 
+<p class = username> <%= @user.name %>
 <%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
+</p>
   <h2><%= @room.name %></h2> 
   <% if @user != @room.owner %>
       <%= link_to 'unjoin', kick_room_path(@room, :user_id => @user.id), method: :delete, data: { confirm: 'Are you sure you want to unjoin from the room?' } %>   
@@ -25,7 +27,7 @@
     <td><b><%= post.username %>:</b></td>
     <td><%= post.body %></td>
     <td><%= post.created_at %></td>
-    <% if @user.name == post.username %>
+    <% if @user.name == post.username || @user == @room.owner %>
       <td><%= link_to 'Delete', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
       <td></td>    
@@ -72,6 +74,7 @@
 </br>
 <%= link_to 'Back', user_path(@user), class: "back-link" %>
 </br>
+<hr>
 </div>
 
 
