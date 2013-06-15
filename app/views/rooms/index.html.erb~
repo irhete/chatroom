@@ -1,25 +1,11 @@
-<h1>Listing rooms</h1>
+<div class = rooms>
+<%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-  </tr>
+<h1>All rooms</h1>
 
-<% @rooms.each do |room| %>
-  <tr>
-    <td><%= room.name %></td>
-   <% if room.members.include?(@user) %>
-      <td><%= link_to 'Show', room %></td>
-    <% else %>
-      <td><%= link_to 'Join', join_room_room_path(room) %> </td>  
-    <% end %>
-    
-  </tr>
-<% end %>
-</table>
 
-</br>
 
-<%= link_to 'Back', user_path(@user) %>
-<%= link_to 'Sign out', signout_path, :method=>:delete %>
+<%= render '/users/rooms_form' %>
+
+<%= link_to 'Back', user_path(@user), class: "back-link" %>
+</div>

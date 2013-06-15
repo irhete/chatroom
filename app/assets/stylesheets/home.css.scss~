@@ -8,6 +8,7 @@
 
 .signout-link {
   float: right;
+  font-size: 11pt;
 }
 
 #header {

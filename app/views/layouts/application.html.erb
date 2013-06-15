@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chatroom2</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title>Chatroom</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body style="background: #EEEEEE;">
 
-<%= yield %>
+<div id="header"> 
+  Chatroom
+</div>        
+       
+<div id="content"> 
+<%= yield %> 
+</div>
+
+<div id="footer">
+ Irene Teinemaa 2013. All rights reserved.
+</div> 
 
 </body>
 </html>

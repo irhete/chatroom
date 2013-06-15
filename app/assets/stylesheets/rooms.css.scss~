@@ -51,13 +51,13 @@ h2 {
 }
 
 table.posts tr:last-child td:first-child, table.members tr:last-child td:first-child {
-    -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px
+    -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px
 }
 
 table.posts, tr:last-child td:last-child, table.members, tr:last-child td:last-child {
-    -moz-border-radius:5px;
-  -webkit-border-radius:5px;
-  border-radius:5px
+    -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px
 }

@@ -1,27 +1,49 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="error"><%= flash[:error] %></p>
+    <% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<table id = loggedInUser>
+<tr>
+<td>
+Hello, <b><%= @user.name %></b> !
+</td>
+
+<td>
+<%= link_to 'Sign out', signout_path, :method=>:delete, class: "signout-link" %>
+</td>
+</tr>
+
+<tr>
+<td>
 
 <%= form_for([@user, @user.owned_rooms.build]) do |f| %>
   <div class="field">
-    <%= f.label 'Create new room:' %><br />
+    <%= f.label 'Enter room name:' %><br />
     <%= f.text_field :name %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</td>
 
-</br>
-
-<%= link_to 'All rooms', rooms_path %> 
+<td>
+<div class = roomLinks>
+<%= link_to 'My rooms', member_rooms_user_path(@user) %> 
 </br>
 <%= link_to 'Owned rooms', owned_rooms_user_path(@user) %> 
 </br>
-<%= link_to 'My rooms', member_rooms_user_path(@user) %> 
-</br>
-</br>
-<%= link_to 'Sign out', signout_path, :method=>:delete %>
+<%= link_to 'All rooms', rooms_path %> 
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<%= link_to 'Delete account', @user, :method=>:delete, data: { confirm: 'Are you sure you want to unjoin from the room?' } %>
+</td>
+</tr>
+</table>
+

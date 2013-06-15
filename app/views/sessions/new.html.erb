@@ -1,19 +1,30 @@
 <% provide(:title, "Sign in") %>
+<% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+      <p class="error"><%= flash[:error] %></p>
+    <% end %>
+<div class="login">
 <h1>Sign in</h1>
 
-<div class="row">
-  <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-	</br>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-</br>
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+      <table>
+        <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+      <td><%= f.label :password %></td>
+      <td><%= f.password_field :password %></td>
+        </tr>
+<tr>
+<td></td>
+<td> <%= f.submit "Sign in", class: "login-button" %></td>
+</tr>
+</table>
+     
     <% end %>
 
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
 </div>

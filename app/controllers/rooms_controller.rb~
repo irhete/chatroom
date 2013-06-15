@@ -13,9 +13,14 @@ class RoomsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @room = @user.owned_rooms.create(params[:room])
-    @room.members << @user
-    redirect_to user_path(@user)
+    @room = @user.owned_rooms.new(params[:room])
+    if !@room.valid?
+        redirect_to user_path(@user), :flash => { :error => @room.errors.full_messages.join(', ') } 
+    else
+      @room.members << @user
+      @room.save
+      redirect_to owned_rooms_user_path(@user)
+    end
   end
   
   # GET /rooms/1
@@ -29,11 +34,25 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+
+    respond_to do |format|
+      format.html { redirect_to rooms_url }
+      format.json { head :no_content }
+    end
+  end
+
   def kick
     @room = Room.find(params[:id])
     @user = User.find(params[:user_id])
     @room.members.delete(@user)
-    redirect_to room_path(@room)
+    if @room.owner == current_user 
+      redirect_to room_path(@room)
+    else
+      redirect_to rooms_path
+    end
   end
 
    def join_room
