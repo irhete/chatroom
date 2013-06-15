@@ -6,6 +6,6 @@ one:
   room: 
 
 two:
-  username: MyString
+  usename: MyString
   body: MyText
   room: 

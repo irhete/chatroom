@@ -65,7 +65,7 @@ class UserTest < ActiveSupport::TestCase
 
   def test_uniqueness
     user = User.new
-    user.name = "User123"
+    user.name = "user123"
     user.password = "pass123"
     user.password_confirmation = "pass123"
     assert !user.save

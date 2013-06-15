@@ -2,17 +2,6 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, except: [:create, :new]
   before_filter :correct_user,  except: [:create, :new]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show

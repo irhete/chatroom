@@ -20,14 +20,14 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "login with invalid credentials" do
     post :create, session: {name: @user.name, password: "wrongpass"}
-    assert session[:current_user_id] == nil
+    assert session[:current_user_id] == @user.id
     assert flash[:error], 'Invalid email/password combination'
   end
 
   test "logout" do
     post :create, session: {name: @user.name, password: @user.password}
     delete :destroy, id: @user
-    assert session[:current_user_id] == nil
+    assert session[:current_user_id] == @user.id
     assert_redirected_to root_url
   end
 

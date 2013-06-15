@@ -54,4 +54,10 @@ class UsersControllerTest < ActionController::TestCase
     get :member_rooms, id: @user
     assert_redirected_to signin_path
   end
+
+  test "should show user" do
+    login_as(@user)
+    get :show, id: @user
+    assert_redirected_to user_path(@user)
+  end
 end
