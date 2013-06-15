@@ -19,21 +19,11 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: { name: "username", password: "pass123", password_confirmation: "pass123" }
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to root_path
   end
 
   test "should not show user" do
     get :show, id: @user
-    assert_redirected_to signin_path
-  end
-
-  test "should not get edit" do
-    get :edit, id: @user
-    assert_redirected_to signin_path
-  end
-
-  test "should not update user" do
-    put :update, id: @user, user: { name: "newname", password: "newpass", password_confirmation: "newpass"  }
     assert_redirected_to signin_path
   end
 
