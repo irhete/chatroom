@@ -15,7 +15,7 @@
     <td><%= room.members.size %></td>
     <td><%= room.posts.size %></td>
     <% if room.posts.last != nil %>
-      <td><%= room.posts.last.created_at %></td>
+      <td><%= room.posts.last.created_at.strftime("%d.%m.%Y %H:%M:%S") %></td>
     <% else %>
        <td></td>
     <% end %>

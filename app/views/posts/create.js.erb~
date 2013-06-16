@@ -1,0 +1,5 @@
+<% pathlocation = "/rooms/" + @room.id + "/posts/new" %>
+<% broadcast pathlocation do %>
+  $("#postsTable").append("<%= escape_javascript render(@post) %>");
+<% end %>
+$("#postField").val("");

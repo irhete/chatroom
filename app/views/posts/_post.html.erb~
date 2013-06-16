@@ -1,0 +1,12 @@
+
+<tr>
+    <td><b><%= post.username %>:</b></td>
+    <td><%= post.body %></td>
+    <td><%= post.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+   <% if @user.name == post.username || @user == @room.owner %>
+      <td><%= link_to 'Delete', [post.room, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td></td>    
+    <% end %>
+
+  </tr>

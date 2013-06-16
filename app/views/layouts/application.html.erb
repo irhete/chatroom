@@ -3,7 +3,7 @@
 <head>
   <title>Chatroom</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', "http://localhost:9292/faye.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body style="background: #EEEEEE;">
@@ -14,6 +14,7 @@
        
 <div id="content"> 
 <%= yield %> 
+<%= yield :action_specific_js if content_for?(:action_specific_js) %>
 </div>
 
 <div id="footer">

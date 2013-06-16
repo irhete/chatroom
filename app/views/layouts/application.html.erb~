@@ -3,8 +3,9 @@
 <head>
   <title>Chatroom</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', "http://localhost:9292/faye.js" %>
   <%= csrf_meta_tags %>
+  <%= yield(:head) %> 
 </head>
 <body style="background: #EEEEEE;">
 
@@ -17,7 +18,7 @@
 </div>
 
 <div id="footer">
-<hr>
+
  Irene Teinemaa 2013. All rights reserved.
 </div> 
 

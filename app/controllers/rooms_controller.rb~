@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,  only: [:edit, :update, :show]
 
+respond_to :html, :js
+
   def index
     @rooms = Room.all
     @user = current_user
@@ -15,7 +17,7 @@ class RoomsController < ApplicationController
     @user = User.find(params[:user_id])
     @room = @user.owned_rooms.new(params[:room])
     if !@room.valid?
-        redirect_to user_path(@user), :flash => { :error => @room.errors.full_messages.join(', ') } 
+        redirect_to user_path(@user), :flash => { :error => @room.errors.full_messages.first } 
     else
       @room.members << @user
       @room.save
@@ -26,12 +28,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @user = current_user
     @room = Room.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @room }
-    end
+    redirect_to room_posts_path(@room)
   end
 
   def destroy
@@ -65,12 +63,12 @@ class RoomsController < ApplicationController
   private
 
     def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+      redirect_to signin_url, :flash => { :error => "Please sign in." } unless signed_in?
     end
   
   def correct_user
       @room = Room.find(params[:id])
-      redirect_to(root_path) unless @room.members.include?(current_user)
+      redirect_to(root_path), :flash => { :error => "You don't have permissions to this page." } unless @room.members.include?(current_user)
     end
 
 end
