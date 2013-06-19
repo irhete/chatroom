@@ -26,8 +26,8 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
 
 gem 'websocket-rails'
-gem 'faye'
-gem 'thin'
+gem 'faye', require: 'faye'
+gem 'thin', require: 'thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
