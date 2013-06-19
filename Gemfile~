@@ -7,7 +7,7 @@ gem 'minitest', "~> 4.0"
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'rack, require: 'rack'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,7 +27,7 @@ gem 'bcrypt-ruby', '3.0.1'
 
 gem 'websocket-rails'
 gem 'faye', require: 'faye'
-gem 'thin'
+gem 'thin', require: 'thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
