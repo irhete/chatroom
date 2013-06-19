@@ -157,6 +157,7 @@ DEPENDENCIES
   jquery-rails
   minitest (~> 4.0)
   mysql2
+  rack
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   therubyracer
