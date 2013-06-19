@@ -3,7 +3,7 @@
   $(function() {
   var faye = new Faye.Client('http://localhost:9292/faye');
   faye.subscribe(window.location.pathname + "/new", function(data) {
-    alert(data);
+    eval(data);
   });
 });
 </script>
